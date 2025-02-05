@@ -63,11 +63,11 @@ Adding a Dataset card is super valuable for helping users find your dataset and 
 
 ## Using the `huggingface_hub` client library
 
-The rich features set in the `huggingface_hub` library allows you to manage repositories, including creating repos and uploading datasets to the Hub. Visit [the client library's documentation](https://huggingface.co/docs/huggingface_hub/index) to learn more.
+The rich features set in the `huggingface_hub` library allows you to manage repositories, including creating repos and uploading datasets to the Hub. Visit [the client library's documentation](/docs/huggingface_hub/index) to learn more.
 
 ## Using other libraries
 
-Some libraries like [🤗 Datasets](../datasets/index), [Pandas](https://pandas.pydata.org/), [Dask](https://www.dask.org/) or [DuckDB](https://duckdb.org/) can upload files to the Hub.
+Some libraries like [🤗 Datasets](/docs/datasets/index), [Pandas](https://pandas.pydata.org/), [Polars](https://pola.rs), [Dask](https://www.dask.org/) or [DuckDB](https://duckdb.org/) can upload files to the Hub.
 See the list of [Libraries supported by the Datasets Hub](./datasets-libraries) for more information.
 
 ## Using Git
@@ -78,9 +78,9 @@ Since dataset repos are Git repositories, you can use Git to push your data file
 
 The Hub natively supports multiple file formats:
 
+- Parquet (.parquet)
 - CSV (.csv, .tsv)
 - JSON Lines, JSON (.jsonl, .json)
-- Parquet (.parquet)
 - Arrow streaming format (.arrow)
 - Text (.txt)
 - Images (.png, .jpg, etc.)
@@ -89,14 +89,14 @@ The Hub natively supports multiple file formats:
 
 It supports files compressed using ZIP (.zip), GZIP (.gz), ZSTD (.zst), BZ2 (.bz2), LZ4 (.lz4) and LZMA (.xz).
 
-Image and audio files can also have additional metadata files, see the [Data files Configuration](./datasets-data-files-configuration#image-and-audio-datasets) on image and audio datasets.
+Image and audio files can also have additional metadata files. See the [Data files Configuration](./datasets-data-files-configuration#image-and-audio-datasets) on image and audio datasets, as well as the collections of [example datasets](https://huggingface.co/datasets-examples) for CSV, TSV and images.
 
 You may want to convert your files to these formats to benefit from all the Hub features.
 Other formats and structures may not be recognized by the Hub.
 
 ### Which file format should I use?
 
-For most types of datasets, Parquet is the recommended format due to its efficient compression, rich typing, and since a variety of tools supports this format with optimized read and batched operations. Alternatively, CSV or JSON Lines/JSON can be used for tabular data (prefer JSON Lines for nested data). Although easy to parse compared to Parquet, these formats are not recommended for data larger than several GBs. For image and audio datasets, uploading raw files is the most practical for most use cases since it's easy to access individual files. For large scale image and audio datasets streaming, [WebDataset](https://github.com/webdataset/webdataset) should be preferred over raw image and audio files to avoid the overhead of accessing individual files. Though for more general use cases involving analytics, data filtering or metadata parsing, Parquet is the recommended option for large scale image and audio datasets.
+For most types of datasets, **Parquet** is the recommended format due to its efficient compression, rich typing, and since a variety of tools supports this format with optimized read and batched operations. Alternatively, CSV or JSON Lines/JSON can be used for tabular data (prefer JSON Lines for nested data). Although easy to parse compared to Parquet, these formats are not recommended for data larger than several GBs. For image and audio datasets, uploading raw files is the most practical for most use cases since it's easy to access individual files. For large scale image and audio datasets streaming, [WebDataset](https://github.com/webdataset/webdataset) should be preferred over raw image and audio files to avoid the overhead of accessing individual files. Though for more general use cases involving analytics, data filtering or metadata parsing, Parquet is the recommended option for large scale image and audio datasets.
 
 ### Dataset Viewer
 
@@ -107,8 +107,8 @@ After uploading your dataset, make sure the Dataset Viewer correctly shows your 
 
 ## Large scale datasets
 
-The Hugging Face Hub supports large scale datasets, usually uploaded in Parquet (e.g. via `push_to_hub()` using [🤗 Datasets](../datasets/index)) or [WebDataset](https://github.com/webdataset/webdataset) format.
+The Hugging Face Hub supports large scale datasets, usually uploaded in Parquet (e.g. via `push_to_hub()` using [🤗 Datasets](/docs/datasets/main/en/package_reference/main_classes#datasets.Dataset.push_to_hub)) or [WebDataset](https://github.com/webdataset/webdataset) format.
 
-You can upload large scale datasets at high speed using the `huggingface-hub` library.
+You can upload large scale datasets at high speed using the `huggingface_hub` library.
 
-See [how to upload a folder by chunks](../huggingface_hub/guides/upload#upload-a-folder-by-chunks) and the [tips and tricks for large uploads](../huggingface_hub/guides/upload#tips-and-tricks-for-large-uploads).
+See [how to upload a folder by chunks](/docs/huggingface_hub/guides/upload#upload-a-folder-by-chunks), the [tips and tricks for large uploads](/docs/huggingface_hub/guides/upload#tips-and-tricks-for-large-uploads) and the [repository storage limits and recommendations](./storage-limits).

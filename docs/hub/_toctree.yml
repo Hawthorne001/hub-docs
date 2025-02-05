@@ -25,8 +25,8 @@
         title: "How-to: Create automatic metadata quality reports"
   - local: notebooks
     title: Notebooks
-  - local: repositories-recommendations
-    title: Repository size recommendations
+  - local: storage-limits
+    title: Storage Limits
   - local: repositories-next-steps
     title: Next Steps
   - local: repositories-licenses
@@ -77,6 +77,8 @@
         title: Flair
       - local: keras
         title: Keras
+      - local: tf-keras
+        title: TF-Keras (legacy)
       - local: ml-agents
         title: ML-Agents
       - local: mlx-image
@@ -142,6 +144,10 @@
             title: GGUF usage with llama.cpp
           - local: gguf-gpt4all
             title: GGUF usage with GPT4All
+          - local: ollama
+            title: GGUF usage with Ollama
+      - local: dduf
+        title: DDUF
 - title: Datasets
   local: datasets
   isExpanded: true
@@ -159,14 +165,44 @@
   - local: datasets-libraries
     title: Integrated Libraries
     sections:
+      - local: datasets-argilla
+        title: Argilla
       - local: datasets-dask
         title: Dask
       - local: datasets-usage
         title: Datasets
+      - local: datasets-distilabel
+        title: Distilabel
       - local: datasets-duckdb
         title: DuckDB
+        sections:
+          - local: datasets-duckdb-auth
+            title: Authentication for private and gated datasets
+          - local: datasets-duckdb-select
+            title: Query datasets
+          - local: datasets-duckdb-sql
+            title: Perform SQL operations
+          - local: datasets-duckdb-combine-and-export
+            title: Combine datasets and export
+          - local: datasets-duckdb-vector-similarity-search
+            title: Perform vector similarity search
+      - local: datasets-fiftyone
+        title: FiftyOne
       - local: datasets-pandas
         title: Pandas
+      - local: datasets-polars
+        title: Polars
+        sections:
+        - local: datasets-polars-auth
+          title: Authentication for private and gated datasets
+        - local: datasets-polars-file-formats
+          title: Supported file formats
+        - local: datasets-polars-operations
+          title: Performing data transformations
+        - local: datasets-polars-optimizations
+          title: Performance optimizations
+      - local: datasets-spark
+        title: Spark
       - local: datasets-webdataset
         title: WebDataset
   - local: datasets-viewer
@@ -174,6 +210,10 @@
     sections:
       - local: datasets-viewer-configure
         title: Configure the Dataset Viewer
+      - local: datasets-viewer-embed
+        title: Embed the Dataset Viewer in a webpage
+      - local: datasets-viewer-sql-console
+        title: "SQL Console"
   - local: datasets-download-stats
     title: Datasets Download Stats
   - local: datasets-data-files-configuration
@@ -183,6 +223,8 @@
         title: File names and splits
       - local: datasets-manual-configuration
         title: Manual Configuration
+      - local: datasets-audio
+        title: Audio Dataset
       - local: datasets-image
         title: Image Dataset
 - local: spaces
@@ -200,6 +242,10 @@
       title: Using Spaces for Organization Cards
   - local: spaces-gpus
     title: Spaces GPU Upgrades
+  - local: spaces-zerogpu
+    title: Spaces ZeroGPU
+  - local: spaces-dev-mode
+    title: Spaces Dev Mode
   - local: spaces-storage
     title: Spaces Persistent Storage
   - local: spaces-sdks-gradio
@@ -237,6 +283,12 @@
         title: Tabby on Spaces
       - local: spaces-sdks-docker-giskard
         title: Giskard on Spaces
+      - local: spaces-sdks-docker-evidence
+        title: Evidence on Spaces
+      - local: spaces-sdks-docker-marimo
+        title: marimo on Spaces
+      - local: spaces-sdks-docker-langfuse
+        title: Langfuse on Spaces
   - local: spaces-embed
     title: Embed your Space
   - local: spaces-run-with-docker
@@ -279,19 +331,31 @@
       title: Organization Cards
     - local: organizations-security
       title: Access Control in Organizations
-    - local: enterprise-hub
-      title: Enterprise Hub
-      sections:
-      - local: enterprise-sso
-        title: Single Sign-On (SSO)
-      - local: audit-logs
-        title: Audit Logs
-      - local: storage-regions
-        title: Storage Regions
-      - local: enterprise-hub-datasets
-        title: Dataset viewer for Private datasets
-      - local: enterprise-hub-resource-groups
-        title: Resource Groups (Advanced Access Control)
+  - local: enterprise-hub
+    title: Enterprise Hub
+    sections:
+    - local: enterprise-sso
+      title: Single Sign-On (SSO)
+    - local: audit-logs
+      title: Audit Logs
+    - local: storage-regions
+      title: Storage Regions
+    - local: enterprise-hub-datasets
+      title: Dataset viewer for Private datasets
+    - local: enterprise-hub-resource-groups
+      title: Resource Groups (Access Control)
+    - local: advanced-compute-options
+      title: Advanced Compute Options
+    - local: enterprise-hub-advanced-security
+      title: Advanced Security
+    - local: enterprise-hub-tokens-management
+      title: Tokens Management
+    - local: enterprise-hub-analytics
+      title: Analytics
+    - local: enterprise-hub-network-security
+      title: Network Security
+    - local: enterprise-hub-gating-group-collections
+      title: Gating Group Collections
   - local: billing
     title: Billing
   - local: security
@@ -324,6 +388,8 @@
       title: Pickle Scanning
     - local: security-secrets
       title: Secrets Scanning
+    - local: security-protectai
+      title: "Protect AI"
   - local: moderation
     title: Moderation
   - local: paper-pages

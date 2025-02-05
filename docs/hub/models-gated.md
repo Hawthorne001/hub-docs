@@ -25,7 +25,7 @@ By default, access to the model is automatically granted to the user when reques
 
 If you want to manually approve which users can access your model, you must set it to **manual approval**. When this is the case, you will notice more options:
 - **Add access** allows you to search for a user and grant them access even if they did not request it.
-- **Notification frequency** lets you configure when to get notified if new users request access. It can be set to once a day or real-time. By default, an email is sent to your primary email address. You can set a different email address in the **Notifications email** field. For models hosted under an organization, emails are sent to the first 5 admins of the organization.
+- **Notification frequency** lets you configure when to get notified if new users request access. It can be set to once a day or real-time. By default, an email is sent to your primary email address. For models hosted under an organization, emails are by default sent to the first 5 admins of the organization. In both cases (user or organization) you can set a different email address in the **Notifications email** field.
 
 <div class="flex justify-center">
     <img class="block dark:hidden" src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hub/models-gated-manual-approval.png"/>
@@ -57,7 +57,7 @@ You can automate the approval of access requests by using the API. You must pass
 | `GET` | `/api/models/{repo_id}/user-access-request/pending` | Retrieve the list of pending requests. | `{"authorization": "Bearer $token"}` | |
 | `GET` | `/api/models/{repo_id}/user-access-request/accepted` | Retrieve the list of accepted requests. | `{"authorization": "Bearer $token"}` | |
 | `GET` | `/api/models/{repo_id}/user-access-request/rejected` | Retrieve the list of rejected requests. | `{"authorization": "Bearer $token"}` | |
-| `POST` | `/api/models/{repo_id}/user-access-request/handle` | Change the status of a given access request to `status`. | `{"authorization": "Bearer $token"}` | `{"status": "accepted"/"rejected"/"pending", "user": "username"}` |
+| `POST` | `/api/models/{repo_id}/user-access-request/handle` | Change the status of a given access request to `status`. | `{"authorization": "Bearer $token"}` | `{"status": "accepted"/"rejected"/"pending", "user": "username", "rejectionReason": "Optional rejection reason that will be visible to the user (max 200 characters)."}` |
 | `POST` | `/api/models/{repo_id}/user-access-request/grant` | Allow a specific user to access your repo. | `{"authorization":  "Bearer $token"}` | `{"user": "username"} ` |
 
 The base URL for the HTTP endpoints above is `https://huggingface.co`.
@@ -138,6 +138,12 @@ Possible use cases of programmatic management include:
 - If you want to condition access to a model based on completing a payment flow (note that the actual payment flow happens outside of the Hub).
     - Here's an [example repo](https://huggingface.co/Trelis/openchat_3.5-function-calling-v3) from TrelisResearch that uses this use case.
    - [@RonanMcGovern](https://huggingface.co/RonanMcGovern) has posted a [video about the flow](https://www.youtube.com/watch?v=2OT2SI5auQU) and tips on how to implement it.
+
+## Manage gated models as an organization (Enterprise Hub)
+
+[Enterprise Hub](https://huggingface.co/docs/hub/en/enterprise-hub) subscribers can create a Gating Group Collection to grant (or reject) access to all the models and datasets in a collection at once.
+
+More information about Gating Group Collections can be found in [our dedicated doc](https://huggingface.co/docs/hub/en/enterprise-hub-gating-group-collections).
 
 ## Access gated models as a user
 

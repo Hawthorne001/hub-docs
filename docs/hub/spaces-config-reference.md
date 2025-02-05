@@ -32,7 +32,12 @@ All versions of Streamlit from `0.79.0` are supported.
 Specify the suggested [hardware](https://huggingface.co/docs/hub/spaces-gpus) on which this Space must be run.  
 Useful for Spaces that are meant to be duplicated by other users.  
 Setting this value will not automatically assign an hardware to this Space.  
-Value must be a valid hardware flavor (e.g. `"cpu-upgrade"`, `"t4-small"`, `"t4-medium"`, `"a10g-small"`, `"a10g-large"`, `"a10g-largex2"`, `"a10g-largex4"` or `"a100-large"`).  
+Value must be a valid hardware flavor. Current valid hardware flavors:
+- CPU: `"cpu-basic"`, `"cpu-upgrade"`
+- GPU: `"t4-small"`, `"t4-medium"`, `"l4x1"`,
+	`"l4x4"`, `"a10g-small"`, `"a10g-large"`, `"a10g-largex2"`,
+	`"a10g-largex4"`,`"a100-large"`
+- TPU: `"v5e-1x1"`, `"v5e-2x2"`, `"v5e-2x4"`
 
 **`suggested_storage`** : _string_  
 Specify the suggested [permanent storage](https://huggingface.co/docs/hub/spaces-storage) on which this Space must be run.  
@@ -52,7 +57,7 @@ For non-static Spaces, initial url to render. Needs to start with `/`. For stati
 
 **`fullWidth`**: _boolean_  
 Whether your Space is rendered inside a full-width (when `true`) or fixed-width column (ie. "container" CSS) inside the iframe.
-Defaults to false in `gradio`, and to true for other sdks.
+Defaults to `true`.
 
 **`header`**: _string_  
 Can be either `mini` or `default`. If `header` is set to `mini` the space will be displayed full-screen with a mini floating header .   
@@ -85,6 +90,9 @@ Authorized scopes of the connected OAuth app. `openid` and `profile` are authori
 
 **`hf_oauth_expiration_minutes`** : _int_
 Duration of the OAuth token in minutes. Defaults to 480 minutes (8 hours). Maximum duration is 43200 minutes (30 days). See [Adding a Sign-In with HF button to your space](https://huggingface.co/docs/hub/spaces-oauth) for more details.
+
+**`hf_oauth_authorized_org`** : _string_ or _List[string]_
+Restrict OAuth access to members of specific organizations. See [Adding a Sign-In with HF button to your space](https://huggingface.co/docs/hub/spaces-oauth) for more details.
 
 **`disable_embedding`** : _boolean_  
 Whether the Space iframe can be embedded in other websites.

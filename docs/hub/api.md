@@ -17,7 +17,7 @@ Try it out now on our [Playground](https://huggingface.co/spaces/enzostvs/hub-ap
 
 ## Repo listing API
 
-The following endpoints help get information about models, datasets, Spaces, and metrics stored on the Hub.
+The following endpoints help get information about models, datasets, and Spaces stored on the Hub.
 
 <Tip>
 When making API calls to retrieve information about repositories, the <code>createdAt</code> attribute indicates the time when the respective repository was created. It's important to note that there is a unique value, <code>2022-03-02T23:29:04.000Z</code> assigned to all repositories that were created before we began storing creation dates.
@@ -110,9 +110,14 @@ This is equivalent to `huggingface_hub.dataset_info(repo_id, revision)`.
 
 Get the list of auto-converted parquet files.
 
-### GET /api/datasets/{repo_id}/parquet/{config}/{split}/{n}.parquet
+Append the subset and the split to the URL to get the list of files for a specific subset and split:
 
-Get the nth shard of the auto-converted parquet files.
+- `GET /api/datasets/{repo_id}/parquet/{subset}`
+- `GET /api/datasets/{repo_id}/parquet/{subset}/{split}`
+
+### GET /api/datasets/{repo_id}/parquet/{subset}/{split}/{n}.parquet
+
+Get the nth shard of the auto-converted parquet files, for a specific subset (also called "config") and split.
 
 ### GET /api/datasets/{repo_id}/croissant
 
@@ -161,6 +166,7 @@ This is equivalent to `huggingface_hub.space_info(repo_id, revision)`.
 ## Repo API
 
 The following endpoints manage repository settings like creating and deleting a repository.
+
 ### POST /api/repos/create
 
 Create a repository. It's a model repo by default.
@@ -219,7 +225,7 @@ payload = {
 }
 ```
 
-This is equivalent to `huggingface_hub.update_repo_visibility()`.
+This is equivalent to `huggingface_hub.update_repo_settings()`.
 
 ### POST /api/repos/move
 
@@ -257,6 +263,171 @@ headers = { "authorization" :  "Bearer $token" }
 ```
 
 This is equivalent to `huggingface_hub.whoami()`.
+
+## Organization API
+
+The following endpoint gets a list of the Organization members.
+
+### GET /api/organizations/{organization_name}/members
+
+Get the organization members.
+
+Payload:
+
+```js
+headers = { "authorization" :  "Bearer $token" }
+```
+
+This is equivalent to `huggingface_hub.list_organization_members()`.
+
+
+## Resource Groups API
+
+The following endpoints manage resource groups. Resource groups is an Enterprise feature.
+
+### GET /api/organizations/{name}/resource-groups
+
+Get all resource groups in an organization that the authenticated user has access to view.
+
+
+### GET /api/organizations/{name}/resource-groups/{resourceGroupId}
+
+Get detailed information about a specific resource group.
+
+
+### POST /api/organizations/{name}/resource-groups
+
+Create a new resource group in the organization.
+
+Parameters:
+- `name`: Name of the resource group (required)
+- `description`: Description of the resource group (optional)
+- `users`: List of users and their roles in the resource group (optional)
+- `repos`: List of repositories (optional)
+- `autoJoin`: Settings for automatic user joining (optional)
+
+Payload:
+```js
+payload = {
+    "name": "name",
+    "description": "description",
+    "users": [
+        {
+            "user": "username",
+            "role": "admin" // or "write" or "read"
+        }
+    ],
+    "repos": [
+        {
+            "type": "dataset",
+            "name": "huggingface/repo"
+        }
+    ]
+}
+```
+
+
+### PATCH /api/organizations/{name}/resource-groups/{resourceGroupId}
+
+Update a resource group's metadata.
+
+Parameters:
+- `name`: New name for the resource group (optional)
+- `description`: New description for the resource group (optional)
+
+Payload:
+```js
+payload = {
+    "name": "name",
+    "description": "description"
+}
+```
+
+
+### POST /api/organizations/{name}/resource-groups/{resourceGroupId}/settings
+
+Update a resource group's settings.
+
+Payload:
+```js
+payload = {
+    "autoJoin": {
+        "enabled": true,
+        "role": "read" // or "write" or "admin"
+    }
+}
+```
+
+
+### DELETE /api/organizations/{name}/resource-groups/{resourceGroupId}
+
+Delete a resource group.
+
+
+### POST /api/organizations/{name}/resource-groups/{resourceGroupId}/users
+
+Add users to a resource group.
+
+Payload:
+```js
+payload = {
+    "users": [
+        {
+            "user": "username",
+            "role": "admin" // or "write" or "read"
+        }
+    ]
+}
+```
+
+
+### DELETE /api/organizations/{name}/resource-groups/{resourceGroupId}/users/{username}
+
+Remove a user from a resource group.
+
+
+### PATCH /api/organizations/{name}/resource-groups/{resourceGroupId}/users/{username}
+
+Update a user's role in a resource group.
+
+Payload:
+```js
+payload = {
+    "role": "admin" // or "write" or "read"
+}
+```
+
+### POST /api/(models|spaces|datasets)/{namespace}/{repo}/resource-group
+
+Update resource group's repository.
+
+Payload:
+```js
+payload = {
+    "resourceGroupId": "6771d4700000000000000000" // (allow `null` for removing the repo's resource group)
+}
+```
+
+### GET /api/(models|spaces|datasets)/{namespace}/{repo}/resource-group
+
+Get detailed repository's resource group
+
+
+## Paper Pages API
+
+The following endpoint gets information about a paper.
+
+### GET /api/papers/{arxiv_id}
+
+Get the API equivalent of the Paper page, i.e., metadata like authors, summary, and discussion comments.
+
+### GET /api/arxiv/{arxiv_id}/repos
+
+Get all the models, datasets, and Spaces that refer to a paper.
+
+### GET /api/daily_papers
+
+Get the daily papers curated by AK and the community. It's the equivalent of [https://huggingface.co/papers](https://huggingface.co/papers).
 
 ## Collections API
 

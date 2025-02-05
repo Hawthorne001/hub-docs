@@ -2,7 +2,7 @@
 
 ## Integrated libraries
 
-If a dataset on the Hub is tied to a [supported library](./datasets-libraries), loading the dataset can be done in just a few lines. For information on accessing the dataset, you can click on the "Use in dataset library" button on the dataset page to see how to do so. For example, [`samsum`](https://huggingface.co/datasets/samsum?library=true) shows how to do so with 🤗 Datasets below.
+If a dataset on the Hub is tied to a [supported library](./datasets-libraries), loading the dataset can be done in just a few lines. For information on accessing the dataset, you can click on the "Use this dataset" button on the dataset page to see how to do so. For example, [`samsum`](https://huggingface.co/datasets/Samsung/samsum?library=datasets) shows how to do so with 🤗 Datasets below.
 
 <div class="flex justify-center">
 <img class="block dark:hidden" src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/hub/datasets-usage.png"/>
@@ -16,7 +16,7 @@ If a dataset on the Hub is tied to a [supported library](./datasets-libraries), 
 
 ## Using the Hugging Face Client Library
 
-You can use the [`huggingface_hub`](https://huggingface.co/docs/huggingface_hub) library to create, delete, update and retrieve information from repos. You can also download files from repos or integrate them into your library! For example, you can quickly load a CSV dataset with a few lines using Pandas.
+You can use the [`huggingface_hub`](/docs/huggingface_hub) library to create, delete, update and retrieve information from repos. You can also download files from repos or integrate them into your library! For example, you can quickly load a CSV dataset with a few lines using Pandas.
 
 ```py
 from huggingface_hub import hf_hub_download

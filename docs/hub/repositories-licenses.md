@@ -60,8 +60,10 @@ A full list of the available licenses is available here:
 | GNU Lesser General Public License v2.1                         | `lgpl-2.1`                               |
 | GNU Lesser General Public License v3.0                         | `lgpl-3.0`                               |
 | ISC                                                            | `isc`                                    |
+| Intel Research Use License Agreement                           | `intel-research`                         | <!-- license: https://huggingface.co/OpenVINO/Llama-3.1-8B-Instruct-FastDraft-150M-int8-ov/blob/main/LICENSE.md -->
 | LaTeX Project Public License v1.3c                             | `lppl-1.3c`                              |
 | Microsoft Public License                                       | `ms-pl`                                  |
+| Apple Sample Code license                                      | `apple-ascl`                             | <!-- license: https://developer.apple.com/support/downloads/terms/apple-sample-code/Apple-Sample-Code-License.pdf -->
 | Mozilla Public License 2.0                                     | `mpl-2.0`                                |
 | Open Data Commons License Attribution family                   | `odc-by`                                 |
 | Open Database License family                                   | `odbl`                                   |
@@ -77,6 +79,8 @@ A full list of the available licenses is available here:
 | DeepFloyd IF Research License Agreement                        | `deepfloyd-if-license`                   |
 | Llama 2 Community License Agreement                            | `llama2`                                 | <!-- license: https://huggingface.co/meta-llama/Llama-2-7b-chat-hf/blob/main/LICENSE.txt -->
 | Llama 3 Community License Agreement                            | `llama3`                                 | <!-- license: https://huggingface.co/meta-llama/Meta-Llama-3-8B/blob/main/LICENSE -->
+| Llama 3.1 Community License Agreement                          | `llama3.1`                               | <!-- license: https://huggingface.co/meta-llama/Meta-Llama-3.1-70B-Instruct/blob/main/LICENSE -->
+| Llama 3.2 Community License Agreement                          | `llama3.2`                               | <!-- license: https://huggingface.co/meta-llama/Llama-3.2-1B/blob/main/LICENSE.txt -->
 | Gemma Terms of Use                                             | `gemma`                                  | <!-- license: https://ai.google.dev/gemma/terms -->
 | Unknown                                                        | `unknown`                                |
 | Other                                                          | `other`                                  |
